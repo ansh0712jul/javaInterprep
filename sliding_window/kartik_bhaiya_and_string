@@ -1,0 +1,38 @@
+// //Kartik Bhaiya has a string consisting of only 'a' and 'b' as the characters. Kartik Bhaiya describes perfectness of a string as the maximum length substring of equal characters. Kartik Bhaiya is given a number k which denotes the maximum number of characters he can change. Find the maximum perfectness he can generate by changing no more than k characters.
+
+
+
+
+
+public class KartikBhaiyaAndStrings {
+    public static void main(String[] args) {
+        String s="aabaabaabab";
+        int k=2;
+        int aflip=find(s, k, 'a');
+        int bflip=find(s, k, 'b');
+        System.out.println(Math.max(aflip,bflip));
+
+
+    }
+    public static int find(String s,int k,char ch){
+        int ans=0;
+        int si=0,ei=0;
+        int flips=0;
+        while(ei<s.length()){
+            if(s.charAt(ei)==ch) flips++;//growing phase
+            while(flips>k && si<=ei){//shrinking phase
+                if(s.charAt(si)==ch){
+                    flips--;
+                }
+                si++;
+            }
+            ans=Math.max(ans,ei-si+1);//calculation of ans
+            ei++;
+        }
+        return ans;
+
+    }
+}
+
+
+
