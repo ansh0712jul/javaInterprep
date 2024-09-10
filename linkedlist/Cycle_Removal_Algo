@@ -68,7 +68,7 @@ public class Cycle_Removal {
 		return null;
 
 	}
-
+       //O(n2)
 	public void removeCycl1() {
 
 		Node meetup = hasCycle();
@@ -91,7 +91,7 @@ public class Cycle_Removal {
 		}
 
 	}
-
+        //O(n1)
 	public void removeCycl2() {
 
 		Node meetup = hasCycle();
