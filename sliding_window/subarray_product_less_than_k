@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class Subarray_Product_Less_Than_K {
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int arr[]={10,5,2,6};
+        int k=100;
+        int si=0,ei=0;
+        int prod=1;
+        int ans=0;
+        while(ei<arr.length){
+            prod*=arr[ei];// growing phase
+
+            while(prod>=k && si<=ei){//shriking phase
+                prod/=arr[si];
+                si++;
+            }
+            ans+=ei-si+1;//ans updation
+            ei++;
+        }
+        System.out.println(ans);
+    }
+}
