@@ -1,0 +1,22 @@
+public class recursion {
+    public static void main(String[] args) {
+        int dest=4;
+        DiceRoll(0,"",4);
+
+        
+    }
+    public static void DiceRoll(int curr,String res,int dest){
+        if(curr==dest){
+            System.out.println(res);
+            return ;
+        }
+        if(curr>dest) return ;
+        DiceRoll(curr+1, res+1,dest);
+        DiceRoll(curr+2, res+2,dest);
+        DiceRoll(curr+3, res+3,dest);
+    }
+   
+   
+    
+   
+}
