@@ -1,0 +1,14 @@
+public class recursion {
+    public static void main(String[] args) {
+        Subsequences("abc", "");
+    }
+    public static void Subsequences(String ques,String ans){
+        if(ques.length()==0){
+            System.err.println(ans);
+            return ;
+        }
+        Subsequences(ques.substring(1), ans);
+        Subsequences(ques.substring(1), ans+ques.charAt(0));
+    }
+   
+}
