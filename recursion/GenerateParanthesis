@@ -1,0 +1,18 @@
+import java.util.ArrayList;
+
+public class recursion {
+    public static void main(String[] args) {   
+        ArrayList<String>ll=new ArrayList<>();
+        GenerateParanthesis(3, 0, 0, "", ll);
+        System.out.println(ll);
+    }
+    public static void GenerateParanthesis(int n,int open ,int close,String ans,ArrayList<String>ll){
+        if(open==n && close==n) {
+            ll.add(ans);
+            return ;
+        }
+        if(open<n) GenerateParanthesis(n,open+1, close, ans+'(',ll);
+       if(close<open) GenerateParanthesis(n,open, close+1, ans+')',ll);
+        
+    } 
+}
