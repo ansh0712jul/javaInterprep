@@ -1,0 +1,15 @@
+public class recursion {
+    public static void main(String[] args) {
+        System.err.println(CoinToss(3, ""));
+      
+    }
+    public static int CoinToss(int n,String ans){
+        if(n==0){
+            return 1;
+        }
+        return CoinToss(n-1, ans+'H')+CoinToss(n-1, ans+'T');
+    }
+   
+    
+   
+}
