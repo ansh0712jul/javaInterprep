@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+
+public class recursion {
+    public static void main(String[] args) { 
+        ArrayList<String> list=new ArrayList<>();
+        ArrayList<ArrayList<String>> ans=new ArrayList<>();
+
+        Pallindrome_Partitioning("NITIN","",list,ans) ;
+        System.err.println(ans);
+    }
+    public static boolean isPallindrome(String s){
+        int i=0;
+        int j=s.length()-1;
+        while (i<j) {
+            if(s.charAt(i)!=s.charAt(j)) return false;
+            i++;
+            j--;
+            
+        }
+        return true;
+    }
+    public static void Pallindrome_Partitioning(String ques,String res,ArrayList<String> list,ArrayList<ArrayList<String>> ans){
+        if(ques.length()==0){
+           ans.add(new ArrayList<>(list));
+            return ;
+        }
+        for(int i=1;i<=ques.length();i++){
+            String s=ques.substring(0,i);
+            if(isPallindrome(s)==true){
+                list.add(s);
+                Pallindrome_Partitioning(ques.substring(i),res+s+"|",list,ans);
+                list.remove(list.size()-1);
+
+            }
+        }
+    }
+}
