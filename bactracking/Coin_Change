@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-
+//TO PRINT THE PERMUTATION
 public class recursion {
     public static void main(String[] args) {  
         int coin[]={2,1,3,5};// unlimited supply of coins
