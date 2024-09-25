@@ -1,0 +1,27 @@
+
+import java.util.Arrays;
+
+public class recursion {
+    public static void main(String[] args) { 
+        int arr[]={5,7,2,3,8,1,4};
+        int si=0, ei=arr.length-1;
+        int indx=si;
+        for(int i=si;i<arr.length;i++){
+            if(arr[i]<=arr[ei]){
+                swap(indx,i,arr);
+                indx++;
+            }
+        }
+        swap(ei,indx,arr);
+        System.out.println(Arrays.toString(arr));
+        System.out.println(indx);
+    }
+    public static void swap(int s,int e,int arr[]){
+        
+        int temp=arr[s];
+        arr[s]=arr[e];
+        arr[e]=temp;
+    
+    }
+}
+    
