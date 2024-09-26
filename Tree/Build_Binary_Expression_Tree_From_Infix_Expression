@@ -1,40 +1,60 @@
-import java.util.Stack;
+package MAP;  
 
-public class InfixToPostfix {
-    public static void main(String[] args) {
+import java.util.Stack;  
 
-    }
-    public String infixToPostfix(String s){
-        StringBuilder sb = new StringBuilder();
-        Stack<Character> st = new Stack<>();
-        for (int i = 0; i < s.length() ; i++) {
-            char ch = s.charAt(i);
-            if(ch>='0' && ch<='9'){
-                sb.append(ch);
-                
-            } else if (ch=='(') {
-                st.push(ch);
-            } else if (ch==')') {
-                while(st.peek()!='('){
-                    sb.append(st.pop());
-                }
-                st.pop();// '(' removed
-            }
-            else{
-                while(!st.isEmpty() && getPriority(st.peek())>getPriority(ch)){
-                    sb.append(st.pop());
-                }
-                st.push(ch);
-            }
-        }
-        while(!st.isEmpty()){
-            sb.append(st.pop());
-        }
-        return sb.toString();
-    }
-    private int getPriority(char ch){
-        if(ch=='*' || ch=='/') return 2;
-        else if(ch=='+' || ch=='-') return 1;
-        else return -1;
-    }
+public class InfixToPostfix {  
+    public static void main(String[] args) {  
+        System.out.println(infixToPostfix("2 - 3 / (5 * 2) + 1"));  
+    }  
+
+    public static String infixToPostfix(String s) {  
+        StringBuilder sb = new StringBuilder();  
+        Stack<Character> st = new Stack<>();  
+
+        for (int i = 0; i < s.length(); i++) {  
+            char ch = s.charAt(i);  
+
+            if (Character.isWhitespace(ch)) {  
+                continue; // Skip over whitespace characters  
+            }  
+
+            if (Character.isDigit(ch)) {  
+                // Append consecutive digits as a single operand  
+                int start = i;  
+                while (i < s.length() && (Character.isDigit(s.charAt(i)) || s.charAt(i) == '.')) {  
+                    i++;  
+                }  
+                sb.append(s, start, i);  
+                i--; // Decrement i to process the next character  
+            } else if (ch == '(') {  
+                st.push(ch);  
+            } else if (ch == ')') {  
+                while (st.peek() != '(') {  
+                    sb.append(st.pop());  
+                }  
+                st.pop(); // Remove the opening parenthesis  
+            } else {  
+                while (!st.isEmpty() && getPriority(st.peek()) >= getPriority(ch)) {  
+                    sb.append(st.pop());  
+                }  
+                st.push(ch);  
+            }  
+        }  
+
+        while (!st.isEmpty()) {  
+            sb.append(st.pop());  
+        }  
+
+        return sb.toString();  
+    }  
+
+    private static int getPriority(char ch) {  
+        if (ch == '*' || ch == '/') {  
+            return 2;  
+        } else if (ch == '+' || ch == '-') {  
+            return 1;  
+        } else {  
+            return -1;  
+        }  
+    }  
 }
